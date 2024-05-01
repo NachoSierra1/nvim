@@ -43,7 +43,18 @@ vim.keymap.set("n", "<C-Left>", ":vertical resize +3<CR>")
 
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.api.nvim_command("autocmd FileType python nnoremap <Leader>r :w<CR>:10split<CR>:term python %<CR>")
+vim.api.nvim_command("autocmd FileType python nnoremap <Leader>r :w<CR>:10split<CR>:term python3 %<CR>")
+vim.api.nvim_command(
+	"autocmd FileType asm nnoremap <Leader>r :w<CR>:10split<CR>:term nasm -f elf64 -o %<.o % && ld -o %< %<.o && ./%<<CR>"
+)
+
+vim.keymap.set("n", "<leader>v", ":vsplit")
+vim.keymap.set("n", "<leader>s", ":split")
+
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
